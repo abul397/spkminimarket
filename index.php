@@ -1,211 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
+<?php
+include('config.php');
+include('fungsi.php');
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+// header
+include('header.php');
+?>
 
-  <title>SPK Minimarket</title>
+	<section class="content">
+			<h2 class="ui header">Analitycal Hierarchy Process (AHP)</h2>
 
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+			<p>Analytic Hierarchy Process (AHP) merupakan suatu model pendukung keputusan yang dikembangkan oleh Thomas L. Saaty. Model pendukung keputusan ini akan menguraikan masalah multi faktor atau multi kriteria yang kompleks menjadi suatu hirarki. Hirarki  didefinisikan sebagai suatu representasi dari sebuah permasalahan yang kompleks dalam suatu struktur multi level dimana level pertama adalah tujuan, yang diikuti level faktor, kriteria, sub kriteria, dan seterusnya ke bawah hingga level terakhir dari alternatif.</p>
+			
+			<p>AHP membantu para pengambil keputusan untuk memperoleh solusi terbaik dengan mendekomposisi permasalahan kompleks ke dalam bentuk yang lebih sederhana untuk kemudian melakukan sintesis terhadap berbagai faktor yang terlibat dalam permasalahan pengambilan keputusan tersebut. AHP mempertimbangkan aspek kualitatif dan kuantitatif dari suatu keputusan dan mengurangi kompleksitas suatu keputusan dengan membuat perbandingan satu-satu dari berbagai kriteria yang dipilih untuk kemudian mengolah dan memperoleh hasilnya.</p>
 
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.css" rel="stylesheet">
-  
+			<p>AHP sering digunakan sebagai metode pemecahan masalah dibanding dengan metode yang lain karena alasan-alasan sebagai berikut :</p>
 
-</head>
+			<ol class="ui list">
+				<li>Struktur yang berhirarki, sebagai konsekuesi dari kriteria yang  dipilih, sampai pada subkriteria yang paling dalam.</li>
+				<li>Memperhitungkan validitas sampai dengan batas toleransi inkonsistensi berbagai kriteria dan alternatif yang dipilih oleh pengambil keputusan.</li>
+				<li>Memperhitungkan daya tahan output analisis sensitivitas pengambilan keputusan.</li>
+			</ol>
 
-<body id="page-top">
+			<br>
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+			<h3 class="ui header">Tabel Tingkat Kepentingan menurut Saaty (1980)</h3>
+			<table class="ui collapsing striped blue table">
+				<thead>
+					<tr>
+						<th>Nilai Numerik</th>
+						<th>Tingkat Kepentingan <em>(Preference)</em></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="center aligned">1</td>
+						<td>Sama pentingnya <em>(Equal Importance)</em></td>
+					</tr>
+					<tr>
+						<td class="center aligned">2</td>
+						<td>Sama hingga sedikit lebih penting</td>
+					</tr>
+					<tr>
+						<td class="center aligned">3</td>
+						<td>Sedikit lebih penting <em>(Slightly more importance)</em></td>
+					</tr>
+					<tr>
+						<td class="center aligned">4</td>
+						<td>Sedikit lebih hingga jelas lebih penting</td>
+					</tr>
+					<tr>
+						<td class="center aligned">5</td>
+						<td>Jelas lebih penting <em>(Materially more importance)</em></td>
+					</tr>
+					<tr>
+						<td class="center aligned">6</td>
+						<td>Jelas hingga sangat jelas lebih penting</td>
+					</tr>
+					<tr>
+						<td class="center aligned">7</td>
+						<td>Sangat jelas lebih penting <em>(Significantly more importance)</em></td>
+					</tr>
+					<tr>
+						<td class="center aligned">8</td>
+						<td>Sangat jelas hingga mutlak lebih penting</td>
+					</tr>
+					<tr>
+						<td class="center aligned">9</td>
+						<td>Mutlak lebih penting <em>(Absolutely more importance)</em></td>
+					</tr>
+				</tbody>
+			</table>
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+	</section>
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-        <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-        <div class="sidebar-brand-text mx-1">SPK Minimarket</div>
-      </a>
-
-      <!-- Divider -->
-      <hr>
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li> 
-
-      <hr class="sidebar-divider my-1">
-
-
-      <li class="nav-item active">
-        <a class="nav-link" href="kriteria.php">
-          
-          <span>Kriteria</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="alternatif.php">
-          
-          <span>Alternatif</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="perbandingankriteria.php">
-          
-          <span>Perbandingan Kriteria</span></a>
-      </li>
-
-      
-     
-      <li class="nav-item active">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          
-          <span>Perandingan Alternatif</span>
-        </a>
-
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Kriteria:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-       <li class="nav-item active">
-        <a class="nav-link" href="hasil.php">
-          
-          <span>Hasil</span></a>
-      </li>
-
-
-      
-
-      <!-- Nav Item - Charts -->
-     
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
-      <div id="content">
-
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            
-
-            <!-- Nav Item - Messages -->
-            
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 ">User </span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                
-          
-                <a class="dropdown-item" href="alternatif.php"  >
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
-  
-
-  
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-
-</body>
-
-</html>
+<?php include('footer.php'); ?>
