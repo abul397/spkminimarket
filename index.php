@@ -25,7 +25,8 @@ include('header.php');
 			<br>
 
 			<h3 class="ui header">Tabel Tingkat Kepentingan menurut Saaty (1980)</h3>
-			<table class="ui collapsing striped blue table">
+			
+			<table class="table table-bordered table-hover table-stripped">
 				<thead>
 					<tr>
 						<th>Nilai Numerik</th>
@@ -68,6 +69,52 @@ include('header.php');
 					<tr>
 						<td class="center aligned">9</td>
 						<td>Mutlak lebih penting <em>(Absolutely more importance)</em></td>
+					</tr>
+				</tbody>
+			</table>
+			<br><br>
+
+			<h3 class="ui header">Tabel Nilai Random Indeks (RI)</h3>
+			
+			<table class="table table-bordered table-hover table-stripped">
+				<thead>
+					<tr>
+						<th>Orde Matriks</th>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>8</td>
+						<td>9</td>
+						<td>10</td>
+						<td>11</td>
+						<td>12</td>
+						<td>13</td>
+						<td>14</td>
+						<td>15</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>RI</th>
+						<td>0</td>
+						<td>0</td>
+						<td>0.58</td>
+						<td>0.9</td>
+						<td>1.12</td>
+						<td>1.24</td>
+						<td>1.32</td>
+						<td>1.41</td>
+						<td>1.45</td>
+						<td>1.49</td>
+						<td>1.51</td>
+						<td>1.48</td>
+						<td>1.56</td>
+						<td>1.57</td>
+						<td>1.58</td>
 					</tr>
 				</tbody>
 			</table>

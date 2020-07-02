@@ -23,9 +23,11 @@
 	}
 
 	include('header.php');
+
 ?>
 
-<section>
+
+<section class="content">
 	<h3>Kriteria</h3>
 	<?php if ($data['role'] == '1'): ?>
 		<a href="tambah.php?jenis=kriteria" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
@@ -36,7 +38,8 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th colspan="2">Nama Kriteria</th>
+				<th>Nama Kriteria</th>
+				<th>Aksi</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -70,13 +73,11 @@
 	</table>
 
 	<br>
-
-	<form action="alternatif.php">
-		<button class="btn btn-sm btn-success" style="float: right;">
-			Lanjut <i class="fa fa-angle-right"></i>
-		</button>
-	</form>
+	<a href="tambah.php?jenis=kriteria" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
+		<i class="fa fa-plus-square"></i> Tambah
+	</a>
 
 </section>
+
 
 <?php include('footer.php'); ?>

@@ -23,12 +23,9 @@
 	}
 
 	include('header.php');
-
 ?>
 
-
 <section class="content">
-
 	<h3>Alternatif</h3>
 	<?php if ($data['role'] == '1'): ?>
 	<a href="tambah.php?jenis=alternatif" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
