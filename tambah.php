@@ -27,7 +27,7 @@
 <section class="content">
 	<h3>Tambah <?php echo $jenis?></h3><br>
 
-	<form class="col-md-6" method="post" action="tambah.php">
+	<form class="col-md-12" method="post" action="tambah.php">
 		<div class="form-group">
 			<label>Nama <?php echo $jenis ?></label>
 			<input type="text" name="nama" class="form-control">
@@ -37,8 +37,9 @@
 		<?php if ($jenis != 'kriteria'): ?>
 			<?php foreach ($kriteria as $key): ?>
 			<div class="form-group">
-				<label><?= $key['nama'] ?></label>
-				<input type="text" name="kriteria[]" value="" class="form-control">
+				<label><?= ($key['nama'] == 'Jarak') ? 'Koordinat Lokasi' : $key['nama'] ?><?= ($key['nama'] == 'Jarak') ? ' (lat,lang)' : '' ?></label>
+				<textarea type="text" name="kriteria[]" class="form-control
+				<?= ($key['nama'] == 'Fasilitas' || $key['nama'] == 'Kelengkapan Barang') ? 'summernote' : '' ?>"></textarea>
 			</div>
 			<?php endforeach; ?>
 		<?php endif; ?>
@@ -47,3 +48,28 @@
 </section>
 
 <?php include('footer.php'); ?>
+
+<!-- Summernote -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.summernote').summernote({
+		dialogsInBody: true,
+		height: 200,
+		toolbar: [
+			['style', ['style']],
+			['font', ['bold', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+			['fontname', ['fontname']],
+			['color', ['color']],
+			['fontsize', ['fontsize']],
+			['para', ['ul', 'ol', 'paragraph']],
+			['height', ['height']],
+			['table', ['table']],
+			['insert', ['link', 'picture', 'video']],
+			['view', ['codeview', 'help']],
+		]
+	});
+});
+</script>

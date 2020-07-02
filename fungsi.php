@@ -119,7 +119,7 @@ function getKriteria(){
 function tambahDataKriteria($tabel,$nama) {
 	include('config.php');
 
-	$query 	= "INSERT INTO $tabel (nama) VALUES ('$nama')";
+	$query 	= "INSERT INTO $tabel (nama) VALUES ('".addslashes($nama)."')";
 	$tambah	= mysqli_query($koneksi, $query);
 
 	if (!$tambah) {
@@ -475,14 +475,14 @@ function showTabelPerbandingan($jenis,$kriteria) {
 				<td>
 					<div class="field">
 
-	<?php
-	if ($kriteria == 'kriteria') {
-		$nilai = getNilaiPerbandinganKriteria($x,$y);
-	} else {
-		$nilai = getNilaiPerbandinganAlternatif($x,$y,($jenis-1));
-	}
+					<?php
+					if ($kriteria == 'kriteria') {
+						$nilai = getNilaiPerbandinganKriteria($x,$y);
+					} else {
+						$nilai = getNilaiPerbandinganAlternatif($x,$y,($jenis-1));
+					}
 
-	?>
+					?>
 						<input class="form-control" type="text" name="bobot<?php echo $urut?>" value="<?php echo $nilai?>" required>
 					</div>
 				</td>
@@ -497,8 +497,108 @@ function showTabelPerbandingan($jenis,$kriteria) {
 	<input type="text" name="jenis" value="<?php echo $jenis; ?>" hidden>
 	<input class="btn btn-sm btn-success form-control" type="submit" name="submit" value="Submit">
 	</form>
+	<?php
+		$query = "SELECT * FROM detail_alternatif INNER JOIN alternatif ON alternatif.id=detail_alternatif.id_alternatif
+							WHERE detail_alternatif.id_kriteria='".getKriteriaID($jenis-1)."'";
+		$result	= mysqli_query($koneksi, $query);
+		while ($row = mysqli_fetch_array($result)) {
+			$info[] = $row;
+		}
+	?>
+	<table class="table table-stripped">
+		<div class="col-md-4">
+			<div class="accordion" id="accordionExample">
+				<?php $no=0 ?>
+				<?php foreach ($info as $key): ?>
+				<div class="card">
+					<div class="card-header" id="headingOne">
+						<h2 class="mb-0">
+							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<?= $no ?>" aria-expanded="true" aria-controls="collapseOne">
+								<?= $key['nama'] ?>
+							</button>
+						</h2>
+					</div>
+
+					<div id="collapseOne<?= $no ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+						<div class="card-body">
+							<?= $key['nilai'] ?>
+						</div>
+					</div>
+				</div>
+				<?php $no++ ?>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</table>
 
 	<?php
+}
+
+function login(){
+	include('config.php');
+
+	$username = $_POST['username'];
+	$password = md5($_POST['password']);
+
+	$query  = "SELECT * FROM user WHERE username='".$username."' AND password='".$password."'";
+	$result = mysqli_query($koneksi, $query);
+	$result = $result->fetch_assoc();
+
+	if ($result) {
+
+		session_start();
+		$_SESSION['login'] = true;
+		$_SESSION['data'] = $result;
+
+		if ($result['role'] == "1") {
+			header('Location: index.php');
+		}else {
+			header('Location: index.php');
+		}
+	}else {
+		header('Location: '.$_SERVER['REQUEST_URI'].'?message=Username atau password kamu salah!');
+	}
+}
+
+function register(){
+	include('config.php');
+
+	$username = $_POST['username'];
+	$password = md5($_POST['password']);
+	$confirm_password = md5($_POST['confirm_password']);
+
+	if ($password != $confirm_password) {
+		header('Location: '.$_SERVER['REQUEST_URI'].'?message=Konfirmasi password tidak sesuai!');
+	}
+
+	$query  = "SELECT * FROM user WHERE username='".$username."'";
+	$result = mysqli_query($koneksi, $query);
+	$result = $result->fetch_assoc();
+
+	if ($result) {
+		header('Location: '.$_SERVER['REQUEST_URI'].'?message=Username sudah digunakan!');
+	}else {
+		$query 	= "INSERT INTO user (username, password) VALUES ('".$username."', '".$password."')";
+		$tambah	= mysqli_query($koneksi, $query);
+
+		if ($tambah) {
+			$query  = "SELECT * FROM user WHERE username='".$username."'";
+			$result = mysqli_query($koneksi, $query);
+			$result = $result->fetch_assoc();
+		}else {
+			header('Location: '.$_SERVER['REQUEST_URI'].'?message=Gagal menambah data');
+		}
+
+		session_start();
+		$_SESSION['login'] = true;
+		$_SESSION['data'] = $result;
+
+		if ($result['role'] == "1") {
+			header('Location: index.php');
+		}else {
+			header('Location: index.php');
+		}
+	}
 }
 
 ?>

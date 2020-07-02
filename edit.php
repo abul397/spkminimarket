@@ -32,10 +32,10 @@
 			while ($row = mysqli_fetch_array($kr)) {
 				$k[] = $row['id'];
 			}
-			
+
 			//updae-------------------
 			for ($i=0; $i < count($k); $i++) {
-				$query 	= "UPDATE detail_alternatif SET nilai='$kriterias[$i]' WHERE id_alternatif=".$id." AND id_kriteria=".$k[$i];
+				$query 	= "UPDATE detail_alternatif SET nilai='".addslashes($kriterias[$i])."' WHERE id_alternatif=".$id." AND id_kriteria=".$k[$i];
 				$tambah	= mysqli_query($koneksi, $query);
 			}
 		}
@@ -55,7 +55,7 @@
 <section class="content">
 	<h3>Edit <?php echo $jenis?></h3><br>
 
-	<form class="col-md-6" method="post" action="edit.php">
+	<form class="col-md-12" method="post" action="edit.php">
 		<div class="form-group">
 			<label>Nama <?php echo $jenis ?></label>
 			<input type="text" name="nama" class="form-control" value="<?php echo $nama?>">
@@ -74,8 +74,9 @@
 				}
 			?>
 			<div class="form-group">
-				<label><?= $key['nama'] ?></label>
-				<input type="text" name="kriteria[]" value="<?= isset($k) ? $k : '' ?>" class="form-control">
+				<label><?= ($key['nama'] == 'Jarak') ? 'Koordinat Lokasi' : $key['nama'] ?><?= ($key['nama'] == 'Jarak') ? ' (lat,lang)' : '' ?></label>
+				<textarea type="text" name="kriteria[]" class="form-control
+					<?= ($key['nama'] == 'Fasilitas' || $key['nama'] == 'Kelengkapan Barang') ? 'summernote' : '' ?>"><?= isset($k) ? $k : '' ?></textarea>
 			</div>
 			<?php endforeach; ?>
 		<?php endif; ?>
@@ -85,3 +86,28 @@
 </section>
 
 <?php include('footer.php'); ?>
+
+<!-- Summernote -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.summernote').summernote({
+		dialogsInBody: true,
+		height: 200,
+		toolbar: [
+			['style', ['style']],
+			['font', ['bold', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+			['fontname', ['fontname']],
+			['color', ['color']],
+			['fontsize', ['fontsize']],
+			['para', ['ul', 'ol', 'paragraph']],
+			['height', ['height']],
+			['table', ['table']],
+			['insert', ['link', 'picture', 'video']],
+			['view', ['codeview', 'help']],
+		]
+	});
+});
+</script>
