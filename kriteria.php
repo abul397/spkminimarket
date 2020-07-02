@@ -29,10 +29,12 @@
 
 <section class="content">
 	<h3>Kriteria</h3>
-	<div class="row">
-        	<div class="col-lg-12">
-        		<div class="table-responsive">
-	<table class="table table-bordered table-hover table-stripped" id="table_id">
+	<?php if ($data['role'] == '1'): ?>
+		<a href="tambah.php?jenis=kriteria" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
+			<i class="fa fa-plus-square"></i> Tambah
+		</a>
+	<?php endif; ?>
+	<table class="table table-stripped" id="table_id">
 		<thead>
 			<tr>
 				<th>No</th>
@@ -55,11 +57,13 @@
 				<td><?php echo $i ?></td>
 				<td><?php echo $row['nama'] ?></td>
 				<td>
-					<form method="post" action="kriteria.php">
-						<input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-						<button type="submit" name="edit" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o"></i>EDIT</button>
-						<button type="submit" name="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-					</form>
+					<?php if ($data['role'] == '1'): ?>
+						<form method="post" action="kriteria.php">
+							<input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+							<button type="submit" name="edit" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o"></i>EDIT</button>
+							<button type="submit" name="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+						</form>
+					<?php endif; ?>
 				</td>
 			</tr>
 
