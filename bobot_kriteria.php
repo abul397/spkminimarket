@@ -6,7 +6,7 @@
 ?>
 <section class="content">
 	<h3 class="ui header">Perbandingan Kriteria</h3><br>
-	<?php showTabelPerbandingan('kriteria','kriteria'); ?>
+	<?php showTabelPerbandinganBobotKriteria('kriteria','kriteria'); ?>
 </section>
 
 <?php include('footer.php'); ?>
