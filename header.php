@@ -39,7 +39,7 @@
 
 		  <!-- Sidebar - Brand -->
 		  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-		    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+		    <img class="img-profile rounded-circle" src="">
 		    <div class="sidebar-brand-text mx-1">SPK Minimarket</div>
 		  </a>
 
@@ -135,11 +135,11 @@
 				  </button>
 
 				  <!-- Topbar Search -->
-				 
+
 
 				  <!-- Topbar Navbar -->
 				  <ul class="navbar-nav ml-auto">
-				 
+
 
 				    <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -147,7 +147,6 @@
 				    <li class="nav-item dropdown no-arrow">
 				      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				        <span class="mr-2 d-none d-lg-inline text-gray-600 "><?= $data['username'] ?> </span>
-				        <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 				      </a>
 
 				      <!-- Dropdown - User Information -->
