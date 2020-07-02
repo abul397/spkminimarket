@@ -23,18 +23,16 @@
 	}
 
 	include('header.php');
-
 ?>
 
-
 <section class="content">
-
 	<h3>Alternatif</h3>
-	<a href="tambah.php?jenis=alternatif" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
-		<i class="fa fa-plus-square"></i> Tambah
-	</a>
-
-	<table class="ui celled table">
+	
+	<br>
+	<div class="row">
+        	<div class="col-lg-12">
+        		<div class="table-responsive">
+	<table class="table table-bordered table-hover table-stripped" id="table_id">
 		<thead>
 			<tr>
 				<th>No</th>
@@ -79,15 +77,15 @@
 
 		</tbody>
 	</table>
+	<br>
+	<a href="tambah.php?jenis=alternatif" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
+		<i class="fa fa-plus-square"></i> Tambah
+	</a>
 
 	<br>
 
 
-	<form action="alternatif.php">
-		<button class="btn btn-sm btn-success" style="float: right;">
-			Lanjut <i class="fa fa-angle-right"></i>
-		</button>
-	</form>
+	
 </section>
 
 <?php include('footer.php'); ?>
