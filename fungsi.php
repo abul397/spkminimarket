@@ -119,6 +119,17 @@ function getKriteria(){
 function tambahDataKriteria($tabel,$nama) {
 	include('config.php');
 
+	$query  = "SELECT * FROM kriteria WHERE nama='".$nama."'";
+	$result = mysqli_query($koneksi, $query);
+	while ($row = mysqli_fetch_array($result)) {
+		$alt = $row['nama'];
+	}
+
+	if ($alt) {
+		echo "Nama sudah digunakan!";
+		exit();
+	}
+
 	$query 	= "INSERT INTO $tabel (nama) VALUES ('".addslashes($nama)."')";
 	$tambah	= mysqli_query($koneksi, $query);
 
@@ -130,6 +141,21 @@ function tambahDataKriteria($tabel,$nama) {
 
 function tambahDataAlternatif($nama, $kriteria){
 	include('config.php');
+
+	$query  = "SELECT * FROM alternatif WHERE nama='".$nama."'";
+	$result = mysqli_query($koneksi, $query);
+	while ($row = mysqli_fetch_array($result)) {
+		$alt = $row['nama'];
+	}
+
+	if ($alt) {
+		echo "Nama sudah digunakan!";
+		exit();
+	}
+
+	while ($row = mysqli_fetch_array($result)) {
+		$alt = $row['id'];
+	}
 
 	$query 	= "INSERT INTO alternatif (nama) VALUES ('$nama')";
 	$tambah	= mysqli_query($koneksi, $query);
@@ -417,6 +443,89 @@ function getConsRatio($matrik_a,$matrik_b,$n) {
 	return $consratio;
 }
 
+function showTabelPerbandinganBobotKriteria($jenis,$kriteria) {
+	include('config.php');
+
+	if ($kriteria == 'kriteria') {
+		$n = getJumlahKriteria();
+	} else {
+		$n = getJumlahAlternatif();
+	}
+
+	$query = "SELECT nama FROM $kriteria ORDER BY id";
+	$result	= mysqli_query($koneksi, $query);
+	if (!$result) {
+		echo "Error koneksi database!!!";
+		exit();
+	}
+
+	// buat list nama pilihan
+	while ($row = mysqli_fetch_array($result)) {
+		$pilihan[] = $row['nama'];
+	}
+
+	// tampilkan tabel
+	?>
+
+	<form class="col-md-8" action="proses.php" method="post">
+	<table class="table table-stripped">
+		<thead>
+			<tr>
+				<th colspan="2">Pilih yang Lebih Penting</th>
+				<th>Nilai Perbandingan</th>
+			</tr>
+		</thead>
+		<tbody>
+
+	<?php
+
+	//inisialisasi
+	$urut = 0;
+
+	for ($x=0; $x <= ($n - 2); $x++) {
+		for ($y=($x+1); $y <= ($n - 1) ; $y++) {
+
+			$urut++;
+
+	?>
+			<tr>
+				<td>
+					<input name="pilih<?php echo $urut?>" value="1" checked="" class="hidden" type="radio">
+					<label><?php echo $pilihan[$x]; ?></label>
+				</td>
+				<td>
+					<input name="pilih<?php echo $urut?>" value="2" class="hidden" type="radio">
+					<label><?php echo $pilihan[$y]; ?></label>
+				</td>
+				<td>
+					<div class="field">
+
+	<?php
+	if ($kriteria == 'kriteria') {
+		$nilai = getNilaiPerbandinganKriteria($x,$y);
+	} else {
+		$nilai = getNilaiPerbandinganAlternatif($x,$y,($jenis-1));
+	}
+
+	?>
+						<input class="form-control" type="text" name="bobot<?php echo $urut?>" value="<?php echo $nilai?>" required>
+					</div>
+				</td>
+			</tr>
+			<?php
+		}
+	}
+
+	?>
+		</tbody>
+	</table>
+	<input type="text" name="jenis" value="<?php echo $jenis; ?>" hidden>
+	<input class="btn btn-sm btn-success form-control" type="submit" name="submit" value="Submit">
+	</form>
+
+	<?php
+}
+
 // menampilkan tabel perbandingan bobot
 function showTabelPerbandingan($jenis,$kriteria) {
 	include('config.php');
@@ -498,12 +607,16 @@ function showTabelPerbandingan($jenis,$kriteria) {
 	<input class="btn btn-sm btn-success form-control" type="submit" name="submit" value="Submit">
 	</form>
 	<?php
-		$query = "SELECT * FROM detail_alternatif INNER JOIN alternatif ON alternatif.id=detail_alternatif.id_alternatif
+		$query = "SELECT detail_alternatif.*, alternatif.nama, kriteria.nama as kriteria FROM detail_alternatif
+							INNER JOIN alternatif ON alternatif.id=detail_alternatif.id_alternatif
+							INNER JOIN kriteria ON kriteria.id=detail_alternatif.id_kriteria
 							WHERE detail_alternatif.id_kriteria='".getKriteriaID($jenis-1)."'";
 		$result	= mysqli_query($koneksi, $query);
 		while ($row = mysqli_fetch_array($result)) {
 			$info[] = $row;
 		}
+
+		$json = json_encode($info);
 	?>
 	<table class="table table-stripped">
 		<div class="col-md-4">
@@ -521,7 +634,13 @@ function showTabelPerbandingan($jenis,$kriteria) {
 
 					<div id="collapseOne<?= $no ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 						<div class="card-body">
-							<?= $key['nilai'] ?>
+							<?php if ($key['kriteria'] == 'Jarak'): ?>
+								<div id="jarak<?= $key['id'] ?>">
+
+								</div>
+							<?php else: ?>
+								<?= $key['nilai'] ?>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -531,6 +650,54 @@ function showTabelPerbandingan($jenis,$kriteria) {
 		</div>
 	</table>
 
+	<script type="text/javascript">
+		var lat;
+		var lang;
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				alert("Geolocation is not supported by this browser.");
+			}
+		}
+
+		function showPosition(position) {
+			lat = position.coords.latitude;
+			lang = position.coords.longitude;			
+
+			var data = JSON.stringify('<?= $json ?>');
+			var data = JSON.parse('<?= $json ?>');
+
+			for (var i = 0; i < data.length; i++) {
+				var array = data[i].nilai.split(',');
+				var distance = calcCrow(lat, lang, array[0], array[1]);
+				console.log(distance);
+				document.getElementById("jarak"+data[i].id).innerHTML = 'Jarak: '+distance + ' meter dari posisi anda';
+			}
+		}
+
+		function calcCrow(lat1, lon1, lat2, lon2){
+	    var R = 6371; // km
+	    var dLat = toRad(lat2-lat1);
+	    var dLon = toRad(lon2-lon1);
+	    var lat1 = toRad(lat1);
+	    var lat2 = toRad(lat2);
+
+	    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+	      Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+	    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	    var d = R * c;
+	    return (d * 1000).toFixed(1); // Convert to meter
+	  }
+
+	  // Converts numeric degrees to radians
+	  function toRad(Value){
+	      return Value * Math.PI / 180;
+	  }
+
+		getLocation();
+	</script>
 	<?php
 }
 

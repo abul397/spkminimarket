@@ -42,81 +42,85 @@ include('header.php');
 
 <section class="container" style="margin-bottom: 20px">
 	<h4>Hasil Perhitungan</h4>
-	<table class="table table-stripped">
-		<thead>
-		<tr>
-			<th>Overall Composite Height</th>
-			<th>Priority Vector (rata-rata)</th>
-			<?php
-			for ($i=0; $i <= (getJumlahAlternatif()-1); $i++) {
-				echo "<th>".getAlternatifNama($i)."</th>\n";
-			}
-			?>
-		</tr>
-		</thead>
-		<tbody>
-
-		<?php
-			for ($x=0; $x <= (getJumlahKriteria()-1) ; $x++) {
-				echo "<tr>";
-				echo "<td>".getKriteriaNama($x)."</td>";
-				echo "<td>".round(getKriteriaPV(getKriteriaID($x)),5)."</td>";
-
-				for ($y=0; $y <= (getJumlahAlternatif()-1); $y++) {
-					echo "<td>".round(getAlternatifPV(getAlternatifID($y),getKriteriaID($x)),5)."</td>";
+	<div class="table-responsive">
+		<table class="table table-stripped">
+			<thead>
+			<tr>
+				<th>Overall Composite Height</th>
+				<th>Priority Vector (rata-rata)</th>
+				<?php
+				for ($i=0; $i <= (getJumlahAlternatif()-1); $i++) {
+					echo "<th>".getAlternatifNama($i)."</th>\n";
 				}
+				?>
+			</tr>
+			</thead>
+			<tbody>
 
-
-				echo "</tr>";
-			}
-		?>
-		</tbody>
-
-		<tfoot>
-		<tr>
-			<th colspan="2">Total</th>
 			<?php
-			for ($i=0; $i <= ($jmlAlternatif-1); $i++) {
-				echo "<th>".round($nilai[$i],5)."</th>";
-			}
-			?>
-		</tr>
-		</tfoot>
+				for ($x=0; $x <= (getJumlahKriteria()-1) ; $x++) {
+					echo "<tr>";
+					echo "<td>".getKriteriaNama($x)."</td>";
+					echo "<td>".round(getKriteriaPV(getKriteriaID($x)),5)."</td>";
 
-	</table>
+					for ($y=0; $y <= (getJumlahAlternatif()-1); $y++) {
+						echo "<td>".round(getAlternatifPV(getAlternatifID($y),getKriteriaID($x)),5)."</td>";
+					}
+
+
+					echo "</tr>";
+				}
+			?>
+			</tbody>
+
+			<tfoot>
+			<tr>
+				<th colspan="2">Total</th>
+				<?php
+				for ($i=0; $i <= ($jmlAlternatif-1); $i++) {
+					echo "<th>".round($nilai[$i],5)."</th>";
+				}
+				?>
+			</tr>
+			</tfoot>
+
+		</table>
+	</div>
 
 
 	<h4>Perangkingan</h4>
-	<table class="table table-stripped">
-		<thead>
-			<tr>
-				<th>Peringkat</th>
-				<th>Alternatif</th>
-				<th>Nilai</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-				$query  = "SELECT id,nama,id_alternatif,nilai FROM alternatif,ranking WHERE alternatif.id = ranking.id_alternatif ORDER BY nilai DESC";
-				$result = mysqli_query($koneksi, $query);
-
-				$i = 0;
-				while ($row = mysqli_fetch_array($result)) {
-					$i++;
-				?>
-				<tr <?= $i==1 ? 'class="alert alert-success"' : '' ?>>
-					<td><?= $i ?></td>
-					<td><?php echo $row['nama'] ?></td>
-					<td><?php echo $row['nilai'] ?></td>
+	<div class="table-responsive">
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Peringkat</th>
+					<th>Alternatif</th>
+					<th>Nilai</th>
 				</tr>
-
+			</thead>
+			<tbody>
 				<?php
-				}
+					$query  = "SELECT id,nama,id_alternatif,nilai FROM alternatif,ranking WHERE alternatif.id = ranking.id_alternatif ORDER BY nilai DESC";
+					$result = mysqli_query($koneksi, $query);
+
+					$i = 0;
+					while ($row = mysqli_fetch_array($result)) {
+						$i++;
+					?>
+					<tr <?= $i==1 ? 'class="alert alert-success"' : '' ?>>
+						<td><?= $i ?></td>
+						<td><?php echo $row['nama'] ?></td>
+						<td><?php echo $row['nilai'] ?></td>
+					</tr>
+
+					<?php
+					}
 
 
-			?>
-		</tbody>
-	</table>
+				?>
+			</tbody>
+		</table>
+	</div>
 </section>
 
 <?php include('footer.php'); ?>

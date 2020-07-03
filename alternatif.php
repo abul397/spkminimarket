@@ -64,12 +64,24 @@
 			<?php
 				$query = "SELECT detail_alternatif.*, kriteria.nama FROM detail_alternatif INNER JOIN kriteria
 									ON kriteria.id=detail_alternatif.id_kriteria
+									WHERE id_alternatif=".$row['id']." AND kriteria.nama='Jarak'";
+				$results	= mysqli_query($koneksi, $query);
+
+				while ($r = mysqli_fetch_array($results)){ ?>
+					<?php
+						$myArray[] = $r;
+					?>
+				<?php }
+
+				$json = json_encode($myArray);
+
+				$query = "SELECT detail_alternatif.*, kriteria.nama FROM detail_alternatif INNER JOIN kriteria
+									ON kriteria.id=detail_alternatif.id_kriteria
 									WHERE id_alternatif=".$row['id'];
 				$results	= mysqli_query($koneksi, $query);
 
 				while ($r = mysqli_fetch_array($results)){ ?>
 					<td><?php
-						$myArray[] = $r;
 						if ($r['nama'] == 'Jarak') {
 							echo '<div id="jarak'.$r['id'].'"></div>';
 						}else {
@@ -77,8 +89,6 @@
 						}
 					?></td>
 				<?php }
-
-		    $json = json_encode($myArray);
 			?>
 			<?php if ($data['role'] == '1'): ?>
 			<td>
@@ -121,7 +131,6 @@
 	function showPosition(position) {
 		lat = position.coords.latitude;
 		lang = position.coords.longitude;
-		alert('Lokasi kamu saat ini: ' +lat+' '+ lang);
 
 		var data = JSON.stringify('<?= $json ?>');
 		var data = JSON.parse('<?= $json ?>');
