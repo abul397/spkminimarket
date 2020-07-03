@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2020 at 11:43 AM
+-- Generation Time: Jul 03, 2020 at 05:21 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -39,7 +39,14 @@ CREATE TABLE `alternatif` (
 INSERT INTO `alternatif` (`id`, `nama`) VALUES
 (26, 'Minimarket A'),
 (27, 'Minimarket B'),
-(30, 'Minimarket C');
+(30, 'Minimarket C'),
+(31, 'Minimarket D'),
+(32, 'Minimarket E'),
+(33, 'Minimarket F'),
+(34, 'Minimarket G'),
+(35, 'Minimarket H'),
+(36, 'Minimarket I'),
+(37, 'Minimarket J');
 
 -- --------------------------------------------------------
 
@@ -70,7 +77,35 @@ INSERT INTO `detail_alternatif` (`id`, `id_alternatif`, `id_kriteria`, `nilai`) 
 (33, 30, 28, '<p>addslashes<br></p>'),
 (34, 30, 32, '-0.9829121,100.9289182'),
 (35, 30, 33, '24 Jam'),
-(36, 30, 34, '<p>kajdfkajfkadjf</p>');
+(36, 30, 34, '<p>kajdfkajfkadjf</p>'),
+(37, 31, 28, ''),
+(38, 31, 32, ''),
+(39, 31, 33, ''),
+(40, 31, 34, ''),
+(41, 32, 28, ''),
+(42, 32, 32, ''),
+(43, 32, 33, ''),
+(44, 32, 34, ''),
+(45, 33, 28, ''),
+(46, 33, 32, ''),
+(47, 33, 33, ''),
+(48, 33, 34, ''),
+(49, 34, 28, ''),
+(50, 34, 32, ''),
+(51, 34, 33, ''),
+(52, 34, 34, ''),
+(53, 35, 28, ''),
+(54, 35, 32, ''),
+(55, 35, 33, ''),
+(56, 35, 34, ''),
+(57, 36, 28, ''),
+(58, 36, 32, ''),
+(59, 36, 33, ''),
+(60, 36, 34, ''),
+(61, 37, 28, '<p>kdjf</p>'),
+(62, 37, 32, '-0.9128127,100.1121'),
+(63, 37, 33, 'buka 25 jam'),
+(64, 37, 34, '<p>kadjfkajfkdajfkajdkfjakfjd</p>');
 
 -- --------------------------------------------------------
 
@@ -232,8 +267,16 @@ CREATE TABLE `ranking` (
 --
 
 INSERT INTO `ranking` (`id_alternatif`, `nilai`) VALUES
-(26, 1),
-(27, 1);
+(26, 0.883016),
+(27, 0.917536),
+(30, 0.8974),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
+(37, 1);
 
 -- --------------------------------------------------------
 
@@ -255,7 +298,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `username`, `password`, `role`) VALUES
 (3, 'user1', '25d55ad283aa400af464c76d713c07ad', 2),
 (4, 'admin', '25d55ad283aa400af464c76d713c07ad', 1),
-(5, 'user2', 'e10adc3949ba59abbe56e057f20f883e', 2);
+(5, 'user2', 'e10adc3949ba59abbe56e057f20f883e', 2),
+(6, 'user3', '25d55ad283aa400af464c76d713c07ad', 2),
+(7, 'user4', '25d55ad283aa400af464c76d713c07ad', 2);
 
 --
 -- Indexes for dumped tables
@@ -333,19 +378,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `detail_alternatif`
 --
 ALTER TABLE `detail_alternatif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `perbandingan_alternatif`
@@ -369,7 +414,7 @@ ALTER TABLE `pv_alternatif`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
