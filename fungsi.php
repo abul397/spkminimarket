@@ -467,7 +467,7 @@ function showTabelPerbandinganBobotKriteria($jenis,$kriteria) {
 	// tampilkan tabel
 	?>
 
-	<form class="col-md-8" action="proses.php" method="post">
+	<form class="col-md-8" action="proses.php" method="post" name="submitform">
 	<table class="table table-stripped">
 		<thead>
 			<tr>
@@ -520,7 +520,7 @@ function showTabelPerbandinganBobotKriteria($jenis,$kriteria) {
 		</tbody>
 	</table>
 	<input type="text" name="jenis" value="<?php echo $jenis; ?>" hidden>
-	<input class="btn btn-sm btn-success form-control" type="submit" name="submit" value="Submit">
+	<input class="btn btn-sm btn-success form-control" type="submit" name="submit" value="Submit" id="btnSubmit">
 	</form>
 
 	<?php
@@ -664,7 +664,7 @@ function showTabelPerbandingan($jenis,$kriteria) {
 
 		function showPosition(position) {
 			lat = position.coords.latitude;
-			lang = position.coords.longitude;			
+			lang = position.coords.longitude;
 
 			var data = JSON.stringify('<?= $json ?>');
 			var data = JSON.parse('<?= $json ?>');
