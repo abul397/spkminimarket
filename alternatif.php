@@ -27,7 +27,7 @@
 
 <section class="content">
 	<h3>Alternatif</h3>
-	<?php if ($data['role'] == '1'): ?>
+	<?php if (isset($_SESSION['login'])): ?>
 	<a href="tambah.php?jenis=alternatif" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
 		<i class="fa fa-plus-square"></i> Tambah
 	</a>
@@ -42,7 +42,7 @@
 				<th>Jarak</th>
 				<th>Rentang Waktu Buka</th>
 				<th>Kelengkapan Barang</th>
-				<?php if ($data['role'] == '1'): ?>
+				<?php if (isset($_SESSION['login'])): ?>
 				<th>Aksi</th>
 				<?php endif; ?>
 			</tr>
@@ -90,7 +90,7 @@
 					?></td>
 				<?php }
 			?>
-			<?php if ($data['role'] == '1'): ?>
+			<?php if (isset($_SESSION['login'])): ?>
 			<td>
 				<form method="post" action="alternatif.php">
 					<input type="hidden" name="id" value="<?php echo $row['id'] ?>">

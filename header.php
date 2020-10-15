@@ -1,10 +1,10 @@
 <?php
 	session_start();
-	if (!$_SESSION['login']) {
-		header('Location: login.php');
-	}
-
-	$data = $_SESSION['data'];
+	// if (!$_SESSION['login']) {
+	// 	header('Location: login.php');
+	// }
+	//
+	// $data = $_SESSION['data'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,12 +69,9 @@
 		  </li>
 
 		  <li class="nav-item active">
-		    <a class="nav-link" href="bobot_kriteria.php">
-
-		      <span>Perbandingan Kriteria</span></a>
+					<a class="nav-link" href="bobot_kriteria.php">
+			      <span>Perbandingan Kriteria</span></a>
 		  </li>
-
-
 
 		  <li class="nav-item active">
 		    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -136,31 +133,25 @@
 
 				  <!-- Topbar Search -->
 
-
-				  <!-- Topbar Navbar -->
-				  <ul class="navbar-nav ml-auto">
-
-
-				    <div class="topbar-divider d-none d-sm-block"></div>
-
-				    <!-- Nav Item - User Information -->
-				    <li class="nav-item dropdown no-arrow">
-				      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				        <span class="mr-2 d-none d-lg-inline text-gray-600 "><?= $data['username'] ?> </span>
-				      </a>
-
-				      <!-- Dropdown - User Information -->
-				      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-
-
-				        <a class="dropdown-item" href="logout.php"  >
-				          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-				          Logout
-				        </a>
-				      </div>
-				    </li>
-
-				  </ul>
+					<?php if (isset($_SESSION['login'])): ?>
+						<!-- Topbar Navbar -->
+					  <ul class="navbar-nav ml-auto">
+					    <div class="topbar-divider d-none d-sm-block"></div>
+					    <!-- Nav Item - User Information -->
+					    <li class="nav-item dropdown no-arrow">
+					      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					        <span class="mr-2 d-none d-lg-inline text-gray-600 "><?= $_SESSION['data']['username'] ?> </span>
+					      </a>
+					      <!-- Dropdown - User Information -->
+					      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+					        <a class="dropdown-item" href="logout.php"  >
+					          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+					          Logout
+					        </a>
+					      </div>
+					    </li>
+					  </ul>
+					<?php endif; ?>
 				</nav>
 
         <div class="container">
