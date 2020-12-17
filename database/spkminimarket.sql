@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2020 at 11:28 AM
+-- Generation Time: Dec 17, 2020 at 05:27 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.2
 
@@ -65,15 +65,15 @@ CREATE TABLE `detail_alternatif` (
 --
 
 INSERT INTO `detail_alternatif` (`id`, `id_alternatif`, `id_kriteria`, `nilai`) VALUES
-(17, 26, 28, '<p>Sangat baik<span style="font-size: 1rem;">:</span></p><ul><li>Tempat duduk dan meja&nbsp;</li><li>CCTV</li><li>TV</li></ul>'),
+(17, 26, 28, 'Cukup Murah (Terjangkau)'),
 (18, 26, 32, '-0.92764252,100.43036684'),
 (19, 26, 33, '08.00-24.00 WIB (16 jam)'),
 (20, 26, 34, '<div>Cukup lengkap:</div><ul><li>Makanan dan minuman</li><li>Kebutuhan mandi dan mencuci</li><li>Barang-barang pribadi</li><li>Alat tulis kantor</li></ul>'),
-(21, 27, 28, '<p>Sangat&nbsp; baik:</p><ul><li>TV</li><li>Tempat duduk dan meja</li><li>CCTV</li></ul>'),
+(21, 27, 28, 'Cukup Murah(Terjangkau)'),
 (22, 27, 32, '-0.9258753,100.43645922'),
 (23, 27, 33, '09.00-22.00 WIB (13 jam)'),
-(24, 27, 34, '<p>Cukup lengkap+:</p><ul><li>Makanan dan minuman</li><li>Kebutuhan mandi dan mencuci</li><li>Barang-barang pribadi</li><li>Alat tulis kantor</li><li>Galon air dan gas elpiji</li></ul>'),
-(33, 30, 28, '<p>Cukup b<span style="font-size: 1rem;">aik:</span></p><p>TV</p>'),
+(24, 27, 34, '<p>Cukup lengkap:</p><ul><li>Makanan dan minuman</li><li>Kebutuhan mandi dan mencuci</li><li>Barang-barang pribadi</li><li>Alat tulis kantor</li><li>Galon air dan gas elpiji</li></ul>'),
+(33, 30, 28, 'Murah'),
 (34, 30, 32, '-0.92423686,100.44135902'),
 (35, 30, 33, '09.00-22.00 WIB (13 jam)'),
 (36, 30, 34, '<p>Sangat lengkap:</p><ul><li>Makanan dan minuman</li><li>Kebutuhan mandi dan mencuci</li><li>Barang-barang pribadi</li><li>Alat tulis kantor</li><li>Peralatan dapur</li><li>Peralatan rumah tangga</li><li>Kasur dan bantal</li></ul>'),
@@ -154,7 +154,7 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id`, `nama`) VALUES
-(28, 'Fasilitas'),
+(28, 'Harga'),
 (32, 'Jarak'),
 (33, 'Rentang Waktu Buka'),
 (34, 'Kelengkapan Barang');
@@ -377,9 +377,9 @@ CREATE TABLE `perbandingan_kriteria` (
 --
 
 INSERT INTO `perbandingan_kriteria` (`id`, `kriteria1`, `kriteria2`, `nilai`) VALUES
-(10, 28, 32, 0.2),
-(11, 28, 33, 0.25),
-(12, 28, 34, 0.142857),
+(10, 28, 32, 3),
+(11, 28, 33, 4),
+(12, 28, 34, 0.5),
 (13, 32, 33, 2),
 (14, 32, 34, 0.25),
 (15, 33, 34, 0.333333);
@@ -459,10 +459,10 @@ CREATE TABLE `pv_kriteria` (
 --
 
 INSERT INTO `pv_kriteria` (`id_kriteria`, `nilai`) VALUES
-(28, 0.0541674),
-(32, 0.233596),
-(33, 0.169029),
-(34, 0.543208);
+(28, 0.318003),
+(32, 0.132668),
+(33, 0.0971477),
+(34, 0.452182);
 
 -- --------------------------------------------------------
 
@@ -480,16 +480,16 @@ CREATE TABLE `ranking` (
 --
 
 INSERT INTO `ranking` (`id_alternatif`, `nilai`) VALUES
-(26, 0.0856723),
-(27, 0.126826),
-(30, 0.22084),
-(31, 0.0763991),
-(32, 0.0961598),
-(33, 0.0723982),
-(34, 0.170005),
-(35, 0.0638237),
-(36, 0.0590153),
-(37, 0.0288603);
+(26, 0.124917),
+(27, 0.159915),
+(30, 0.178437),
+(31, 0.0744084),
+(32, 0.0828556),
+(33, 0.0677599),
+(34, 0.157181),
+(35, 0.0582367),
+(36, 0.0623577),
+(37, 0.0339321);
 
 -- --------------------------------------------------------
 
@@ -509,8 +509,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `role`) VALUES
-(4, 'admin', '25d55ad283aa400af464c76d713c07ad', 1),
-(9, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 2);
+(4, 'admin', '25d55ad283aa400af464c76d713c07ad', 1);
 
 --
 -- Indexes for dumped tables
@@ -598,27 +597,27 @@ ALTER TABLE `detail_alternatif`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `perbandingan_alternatif`
 --
 ALTER TABLE `perbandingan_alternatif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 --
 -- AUTO_INCREMENT for table `perbandingan_kriteria`
 --
 ALTER TABLE `perbandingan_kriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `pv_alternatif`
 --
 ALTER TABLE `pv_alternatif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
