@@ -121,6 +121,23 @@ include('header.php');
 			</tbody>
 		</table>
 	</div>
+
+	<h4>Rekomendasi</h4>
+	<div>Berdasarkan hasil dari data yang telah diinputkan, maka rekomendasi minimarket yang sesuai dengan kebutuhan anda adalah  
+        
+        <?php
+
+        $query  = "SELECT id,nama,id_alternatif,nilai FROM alternatif,ranking WHERE alternatif.id = ranking.id_alternatif ORDER BY nilai DESC limit 1";
+					$result = mysqli_query($koneksi, $query);
+					$row = mysqli_fetch_array($result);
+					?>
+        <?php echo $row['nama']?>
+        dengan nilai akhir
+        <?php echo $row['nilai']?>	
+			
+ 			
+	</div>
 </section>
 
-<?php include('footer.php'); ?>
+<?php include('footer.php');
+ ?>

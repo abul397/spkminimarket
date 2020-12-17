@@ -29,11 +29,7 @@
 
 <section class="content">
 	<h3>Kriteria</h3>
-	<?php if (isset($_SESSION['login'])): ?>
-		<a href="tambah.php?jenis=kriteria" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
-			<i class="fa fa-plus-square"></i> Tambah
-		</a>
-	<?php endif; ?>
+	
 	<table class="table table-stripped" id="table_id">
 		<thead>
 			<tr>
@@ -72,10 +68,11 @@
 		</tbody>
 	</table>
 
-	<br>
-	<a href="tambah.php?jenis=kriteria" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
-		<i class="fa fa-plus-square"></i> Tambah
-	</a>
+	<?php if (isset($_SESSION['login'])): ?>
+		<a href="tambah.php?jenis=kriteria" class="btn btn-sm btn-info float-right" style="margin-bottom: 15px">
+			<i class="fa fa-plus-square"></i> Tambah
+		</a>
+	<?php endif; ?>
 
 </section>
 

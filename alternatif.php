@@ -33,12 +33,12 @@
 	</a>
 	<?php endif; ?>
 
-	<table class="ui celled table">
+	<table class="ui celled table" id="table_id">
 		<thead>
 			<tr>
 				<th>No</th>
 				<th>Nama Alternatif</th>
-				<th>Fasilitas</th>
+				<th>Harga</th>
 				<th>Jarak</th>
 				<th>Rentang Waktu Buka</th>
 				<th>Kelengkapan Barang</th>
@@ -90,6 +90,7 @@
 					?></td>
 				<?php }
 			?>
+
 			<?php if (isset($_SESSION['login'])): ?>
 			<td>
 				<form method="post" action="alternatif.php">

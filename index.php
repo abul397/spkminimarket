@@ -74,7 +74,7 @@ include('header.php');
 			</table>
 			<br><br>
 
-			<h3 class="ui header">Tabel Nilai Random Indeks (RI)</h3>
+			<h3 class="ui header">Tabel Nilai Random Indeks (Anshori, 2012)</h3>
 			
 			<table class="table table-bordered table-hover table-stripped">
 				<thead>

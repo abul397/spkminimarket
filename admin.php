@@ -96,7 +96,7 @@ span.psw {
 
       <input type="submit" name="login" value="Login" class="btn">
 
-      <center><a href="register.php">Register</a></center>
+     
 
       <?php
         if(!empty($_GET['message'])) {

@@ -54,7 +54,7 @@
 
 	<br>
 
-	<h4>Matriks Nilai Kriteria</h4><br>
+	<h4>Matriks Nilai ALternatif Dalam Kriteria</h4><br>
 	<table class="table table-stripped">
 		<thead>
 			<tr>

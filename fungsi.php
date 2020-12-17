@@ -653,6 +653,7 @@ function showTabelPerbandingan($jenis,$kriteria) {
 	<script type="text/javascript">
 		var lat;
 		var lang;
+		
 
 		function getLocation() {
 			if (navigator.geolocation) {
