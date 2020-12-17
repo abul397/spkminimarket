@@ -89,7 +89,9 @@
 
 				$prio = 1;
 				foreach ($res as $key => $value) {
-					$rank1 = getAlternatifNama($key);
+					if ($prio == 1) {
+						$rank1 = getAlternatifNama($key);
+					}
 					echo "<td>".getAlternatifNama($key)."</td>";
 					echo "<td>".$prio."</td>";
 					echo "</tr>";
