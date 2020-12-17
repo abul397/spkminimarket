@@ -93,9 +93,19 @@ if (isset($_POST['submit'])) {
 	$consRatio   = getConsRatio($jmlmpb,$jmlmnk,$n);
 
 	if ($jenis == 'kriteria') {
-		include('output.php');
+		session_start();
+		if (isset($_SESSION['login'])) {
+			include('output_admin.php');
+		}else {
+			include('output.php');
+		}
 	} else {
-		include('bobot_hasil.php');
+		session_start();
+		if (isset($_SESSION['login'])) {
+			include('bobot_hasil_admin.php');
+		}else {
+			include('bobot_hasil.php');
+		}
 	}
 
 }

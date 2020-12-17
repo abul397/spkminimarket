@@ -14,78 +14,103 @@
 	</div><br>
 	<?php } ?>
 
-	<h4>Matriks Perbandingan Berpasangan</h4><br>
-	<table class="table table-stripped">
+	<!-- <h4>Matriks Perbandingan Berpasangan</h4><br> -->
+	<!-- <table class="table table-stripped">
 		<thead>
 			<tr>
 				<th>Kriteria</th>
-<?php
-	for ($i=0; $i <= ($n-1); $i++) {
-		echo "<th>".getAlternatifNama($i)."</th>";
-	}
-?>
+				<?php
+					// for ($i=0; $i <= ($n-1); $i++) {
+					// 	echo "<th>".getAlternatifNama($i)."</th>";
+					// }
+				?>
 			</tr>
 		</thead>
 		<tbody>
-<?php
-	for ($x=0; $x <= ($n-1); $x++) {
-		echo "<tr>";
-		echo "<td>".getAlternatifNama($x)."</td>";
-			for ($y=0; $y <= ($n-1); $y++) {
-				echo "<td>".round($matrik[$x][$y],5)."</td>";
-			}
-
-		echo "</tr>";
-	}
-?>
+			<?php
+				// for ($x=0; $x <= ($n-1); $x++) {
+				// 	echo "<tr>";
+				// 	echo "<td>".getAlternatifNama($x)."</td>";
+				// 		for ($y=0; $y <= ($n-1); $y++) {
+				// 			echo "<td>".round($matrik[$x][$y],5)."</td>";
+				// 		}
+				//
+				// 	echo "</tr>";
+				// }
+			?>
 		</tbody>
 		<tfoot>
 			<tr>
 				<th>Jumlah</th>
-<?php
-		for ($i=0; $i <= ($n-1); $i++) {
-			echo "<th>".round($jmlmpb[$i],5)."</th>";
-		}
-?>
+					<?php
+							// for ($i=0; $i <= ($n-1); $i++) {
+							// 	echo "<th>".round($jmlmpb[$i],5)."</th>";
+							// }
+					?>
 			</tr>
 		</tfoot>
-	</table>
+	</table> -->
 
 
 	<br>
 
-	<h4>Matriks Nilai ALternatif Dalam Kriteria</h4><br>
+	<h4>Rekomendasi Minimarket Berdasarkan <?= $_GET['name'] ?></h4><br>
 	<table class="table table-stripped">
 		<thead>
 			<tr>
-				<th>Kriteria</th>
-<?php
-	for ($i=0; $i <= ($n-1); $i++) {
-		echo "<th>".getAlternatifNama($i)."</th>";
-	}
-?>
-				<th>Jumlah</th>
-				<th>Priority Vector</th>
+				<th>Rangking Alternatif</th>
+					<?php
+						// for ($i=0; $i <= ($n-1); $i++) {
+						// 	echo "<th>".getAlternatifNama($i)."</th>";
+						// }
+					?>
+				<!-- <th>Jumlah</th> -->
+				<!-- <th>Priority Vector</th> -->
+				<th>Prioritas</th>
 			</tr>
 		</thead>
 		<tbody>
-<?php
-	for ($x=0; $x <= ($n-1); $x++) {
-		echo "<tr>";
-		echo "<td>".getAlternatifNama($x)."</td>";
-			for ($y=0; $y <= ($n-1); $y++) {
-				echo "<td>".round($matrikb[$x][$y],5)."</td>";
-			}
+			<?php
+				// return $pv;
+				//
 
-		echo "<td>".round($jmlmnk[$x],5)."</td>";
-		echo "<td>".round($pv[$x],5)."</td>";
+				// var_dump($pv);
+				// die();
+				$res = [];
+				for ($x=0; $x <= ($n-1); $x++){
+					$res[$x] = round($pv[$x],5);
+				}
 
-		echo "</tr>";
-	}
-?>
+				arsort($res);
+				// echo '<pre>';
+				// var_dump($res);
+				// echo '</pre>';
+				// die();
 
+				$prio = 1;
+				foreach ($res as $key => $value) {
+					$rank1 = getAlternatifNama($key);
+					echo "<td>".getAlternatifNama($key)."</td>";
+					echo "<td>".$prio."</td>";
+					echo "</tr>";
+					$prio++;
+				}
+
+				// for ($x=0; $x <= ($n-1); $x++) {
+				// 	// echo "<tr>";
+				// 	echo "<td>".getAlternatifNama($x)."</td>";
+				// 	// 	for ($y=0; $y <= ($n-1); $y++) {
+				// 	// 		echo "<td>".round($matrikb[$x][$y],5)."</td>";
+				// 	// 	}
+				// 	//
+				// 	// echo "<td>".round($jmlmnk[$x],5)."</td>";
+				// 	echo "<td>".round($res[$x],5)."</td>";
+				//
+				// 	echo "</tr>";
+				// }
+			?>
 		</tbody>
-		<tfoot>
+		<!-- <tfoot>
 			<tr>
 				<th colspan="<?php echo ($n+2)?>">Principe Eigen Vector (λ maks)</th>
 				<th><?php echo (round($eigenvektor,5))?></th>
@@ -98,8 +123,10 @@
 				<th colspan="<?php echo ($n+2)?>">Consistency Ratio</th>
 				<th><?php echo (round(($consRatio * 100),2))?> %</th>
 			</tr>
-		</tfoot>
+		</tfoot> -->
 	</table>
+
+	<p>bla bla <?= $rank1 ?></p>
 
 
 

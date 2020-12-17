@@ -500,14 +500,14 @@ function showTabelPerbandinganBobotKriteria($jenis,$kriteria) {
 				<td>
 					<div class="field">
 
-	<?php
-	if ($kriteria == 'kriteria') {
-		$nilai = getNilaiPerbandinganKriteria($x,$y);
-	} else {
-		$nilai = getNilaiPerbandinganAlternatif($x,$y,($jenis-1));
-	}
+						<?php
+						if ($kriteria == 'kriteria') {
+							$nilai = getNilaiPerbandinganKriteria($x,$y);
+						} else {
+							$nilai = getNilaiPerbandinganAlternatif($x,$y,($jenis-1));
+						}
 
-	?>
+						?>
 						<input class="form-control" type="text" name="bobot<?php echo $urut?>" value="<?php echo $nilai?>" required>
 					</div>
 				</td>
@@ -551,7 +551,7 @@ function showTabelPerbandingan($jenis,$kriteria) {
 	// tampilkan tabel
 	?>
 
-	<form class="col-md-8" action="proses.php" method="post">
+	<form class="col-md-8" action="proses.php?name=<?= getKriteriaNama($jenis-1)?>" method="post">
 	<table class="table table-stripped">
 		<thead>
 			<tr>
@@ -604,7 +604,7 @@ function showTabelPerbandingan($jenis,$kriteria) {
 		</tbody>
 	</table>
 	<input type="text" name="jenis" value="<?php echo $jenis; ?>" hidden>
-	<input class="btn btn-sm btn-success form-control" type="submit" name="submit" value="Submit">
+	<input class="btn btn-sm btn-success form-control" type="submit" name="submit" value="Submit Perbandingan <?php echo getKriteriaNama($jenis-1) ?>">
 	</form>
 	<?php
 		$query = "SELECT detail_alternatif.*, alternatif.nama, kriteria.nama as kriteria FROM detail_alternatif
@@ -653,7 +653,7 @@ function showTabelPerbandingan($jenis,$kriteria) {
 	<script type="text/javascript">
 		var lat;
 		var lang;
-		
+
 
 		function getLocation() {
 			if (navigator.geolocation) {
