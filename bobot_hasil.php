@@ -55,7 +55,7 @@
 	<br>
 
 	<h4>Rekomendasi Minimarket Berdasarkan <?= $_GET['name'] ?></h4><br>
-	<table class="table table-stripped">
+	<table class="table table-stripped" id="table_id">
 		<thead>
 			<tr>
 				<th>Rangking Alternatif</th>
@@ -89,7 +89,9 @@
 
 				$prio = 1;
 				foreach ($res as $key => $value) {
-					$rank1 = getAlternatifNama($key);
+					if ($prio==1) {
+						$rank1 = getAlternatifNama($key);
+					}
 					echo "<td>".getAlternatifNama($key)."</td>";
 					echo "<td>".$prio."</td>";
 					echo "</tr>";
@@ -124,10 +126,12 @@
 				<th><?php echo (round(($consRatio * 100),2))?> %</th>
 			</tr>
 		</tfoot> -->
-	</table>
+	</table>	
+	<br>
 
-	<p>bla bla <?= $rank1 ?></p>
-
+	<div>
+		<h5>Berdasarkan tabel diatas, sistem merekomendasikan <?= $rank1 ?> sebagai minimarket yang paling cocok untuk anda.</h5>
+		</div>
 
 
 <?php
@@ -139,7 +143,7 @@
 	<button class="btn btn-danger">
 		 <i class="fa fa-angle-left"></i> Kembali
 	</button>
-</a>
+</a> 
 
 <?php
 

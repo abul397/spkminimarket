@@ -40,7 +40,7 @@ include('header.php');
 
 ?>
 
-<section class="container" style="margin-bottom: 20px">
+<!-- <section class="container" style="margin-bottom: 20px">
 	<h4>Hasil Perhitungan</h4>
 	<div class="table-responsive">
 		<table class="table table-stripped">
@@ -85,7 +85,7 @@ include('header.php');
 			</tfoot>
 
 		</table>
-	</div>
+	</div> -->
 
 
 	<h4>Perangkingan</h4>
@@ -95,7 +95,7 @@ include('header.php');
 				<tr>
 					<th>Peringkat</th>
 					<th>Alternatif</th>
-					<th>Nilai</th>
+					<!-- <th>Nilai</th> -->
 				</tr>
 			</thead>
 			<tbody>
@@ -110,7 +110,7 @@ include('header.php');
 					<tr <?= $i==1 ? 'class="alert alert-success"' : '' ?>>
 						<td><?= $i ?></td>
 						<td><?php echo $row['nama'] ?></td>
-						<td><?php echo $row['nilai'] ?></td>
+						<!-- <td><?php echo $row['nilai'] ?></td> -->
 					</tr>
 
 					<?php
@@ -131,9 +131,9 @@ include('header.php');
 					$result = mysqli_query($koneksi, $query);
 					$row = mysqli_fetch_array($result);
 					?>
-        <?php echo $row['nama']?>
-        dengan nilai akhir
-        <?php echo $row['nilai']?>	
+       <h5> <?php echo $row['nama']?></h5>
+       <!--  dengan nilai akhir -->
+        <!-- <?php echo $row['nilai']?>	 -->
 			
  			
 	</div>
